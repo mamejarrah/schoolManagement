@@ -34,8 +34,7 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $validateData = $request->validate([
             'name'=>'required|max:255',
             'email'=>'required|max:255',
@@ -52,7 +51,8 @@ class StudentController extends Controller
 
         $students = Student::create($validateData);
 
-        return redirect('/students');
+        return redirect('/students');   
+
     }
 
     /**
@@ -61,9 +61,9 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show(Student $student){
+        
+        return view('show' , compact('student'));
     }
 
     /**

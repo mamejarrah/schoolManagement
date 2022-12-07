@@ -13,6 +13,9 @@
         <th>Phone</th>
         <th>Section</th>
         <th>Image</th>
+        <th>Show</th>
+        <th>Update</th>
+        <th>Delete</th>
       
 
     </tr> </thead>
@@ -27,6 +30,26 @@
             <td>{{ $student->phone}}</td>
             <th>{{ $student->section}}</th>
             <td><img src="/image/{{ $student->image}}" width="96" height="96" /></td>
+            <td>
+                <form method="POST">
+                    <a class="btn btn-info" href="{{ route('students.show' 
+                    , $student->id) }}">Show</a>
+                </form>
+            </td>
+
+            <td>
+                <form method="POST">
+                    <a class="btn btn-primary" href="{{ route('students.edit' 
+                    , $student->id) }}">Edit</a>
+                </form>
+            </td>
+
+            <td>
+                <form method="POST">
+                    <a class="btn btn-danger" href="{{ route('students.destroy' 
+                    , $student->id) }}">Delete</a>
+                </form>
+            </td>
         </tr>
 
         @endforeach
