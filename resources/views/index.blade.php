@@ -1,6 +1,8 @@
 @extends('layout')
 @section('content')
 <h3>Student list</h3>
+
+
 <div class="table-wrapper">
 
     <table class="fl-table">
@@ -11,12 +13,12 @@
         <th>Name</th>
         <th>Email</th>
         <th>Phone</th>
-        <th>Section</th>
+        <th>Filieres</th>
         <th>Image</th>
         <th>Show</th>
         <th>Update</th>
         <th>Delete</th>
-      
+
 
     </tr> </thead>
 
@@ -28,37 +30,63 @@
             <td>{{ $student->name}}</td>
             <td>{{ $student->email}}</td>
             <td>{{ $student->phone}}</td>
-            <th>{{ $student->section}}</th>
+            <th>{{ $student->filieres}}</th>
             <td><img src="/image/{{ $student->image}}" width="96" height="96" /></td>
+
+        <td>
+            <form method="POST">
+                <a class="btn btn-info" href="{{ route('students.show', $student->id)}}">Show</a>
+
+            </form>
+        </td>
+
+         <td>
+            <form method="POST">
+                <a class="btn btn-primary" href="{{ route('students.edit', $student->id)}}">Edit</a>
+
+            </form>
+        </td>
+
+
             <td>
-                <form method="POST">
-                    <a class="btn btn-info" href="{{ route('students.show' 
-                    , $student->id) }}">Show</a>
+                <form action="{{ route('students.destroy', $student->id)}}" method="post">
+                  @csrf
+                  @method('DELETE')
+                  <button class="btn btn-danger" type="submit">Delete</button>
                 </form>
             </td>
 
-            <td>
-                <form method="POST">
-                    <a class="btn btn-primary" href="{{ route('students.edit' 
-                    , $student->id) }}">Edit</a>
-                </form>
-            </td>
 
-            <td>
-                <form method="POST">
-                    <a class="btn btn-danger" href="{{ route('students.destroy' 
-                    , $student->id) }}">Delete</a>
-                </form>
-            </td>
+
         </tr>
+     
 
         @endforeach
     </tbody>
 
     </table>
+      
+
 
 
 </div>
+ </br></br>
+
+ <a href="{{ route('info') }}" class="btn btn-primary"><strong>Informatique</strong></a>&nbsp&nbsp&nbsp
+
+ <a href="{{ route('bureau') }}" class="btn btn-primary"><strong>Bureautique </strong>  </a>&nbsp&nbsp&nbsp
+
+ <a href="{{ route('resource') }}" class="btn btn-primary"><strong>RH</strong></a>&nbsp&nbsp&nbsp
+
+ <a href="{{ route('mark') }}" class="btn btn-primary"><strong>Marketing</strong></a>&nbsp&nbsp&nbsp
+
+<a href="{{ route('dev') }}" class="btn btn-primary"><strong>Developpement Web</strong></a>&nbsp&nbsp&nbsp
+
+<a href="{{ route('graph') }}" class="btn btn-primary"><strong>Infographie</strong></a>&nbsp
+
 
 
 @endsection
+
+
+

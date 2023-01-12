@@ -20,8 +20,19 @@
 </div> 
 
 <div class="form-group>
-    <label for="name" >Section: </label>
-    <input type="text" class="form-control" name="section" />
+    <label for="name" >Filieres: 
+    <select type="text" class="form-select" name="filieres"  >
+
+        <option value="Developpement">Developpement web</option>
+        <option value="informatique">informatique</option>
+        <option value="Marketing">Marketing</option>
+        <option value="RH">RH</option>
+         <option value="Bureautique">Bureautique</option>
+          <option value="Infographie">Infographie</option>
+        
+       
+    </select>
+    </label>
 </div>
 
 <div class="form-group>
@@ -30,6 +41,8 @@
 </div>
 
 <button type="submit" class="btn btn-primary" >Add Student</button>
+
+
 
 </form>
 

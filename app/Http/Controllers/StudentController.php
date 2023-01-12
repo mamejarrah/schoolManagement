@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Student;
+
+use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
@@ -14,8 +15,70 @@ class StudentController extends Controller
      */
     public function index()
     {
+
         $students = Student::all();
+        
+
         return view('index', compact('students'));
+        
+        
+
+
+
+
+    }
+
+    public function indexliste()
+    {
+       $info_students = Student::where('filieres','=','informatique')->get();
+       
+       
+        return view('indexliste', compact('info_students'));
+    }
+
+    public function indexliste1()
+    {
+        $bureau_students = Student::where('filieres','=','Bureautique')->get();
+       
+       
+        return view('indexliste1', compact('bureau_students'));
+        
+    }
+
+     public function indexliste2()
+    {
+        $resource_students = Student::where('filieres','=','RH')->get();
+       
+       
+        return view('indexliste2', compact('resource_students'));
+        
+    }
+
+     public function indexliste3()
+    {
+        $mark_students = Student::where('filieres','=','Marketing')->get();
+       
+       
+        return view('indexliste3', compact('mark_students'));
+        
+    }
+
+     public function indexliste4()
+    {
+        $dev_students = Student::where('filieres','=','Developpement ')->get();
+       
+       
+        return view('indexliste4', compact('dev_students'));
+        
+    }
+
+    public function indexliste5()
+    {
+        $graph_students = Student::where('filieres','=','Infographie ')->get();
+       
+       
+        return view('indexliste5', compact('graph_students'));
+        
     }
 
     /**
@@ -35,12 +98,17 @@ class StudentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
+
         $validateData = $request->validate([
+
+
             'name'=>'required|max:255',
             'email'=>'required|max:255',
-            'phone'=>'required',
-            'section'=>'required',
+            'phone'=>'required|max:255',
+            'filieres'=>'required|max:255',
             'image'=>'required|image|mimes:jpg,jpeg,png,gif,svg',
+
+
 
         ]);
         $image = $request->file('image');
@@ -49,9 +117,12 @@ class StudentController extends Controller
         $image->move($destinationPath , $profileImage);
         $validateData['image'] = $profileImage;
 
+
+
+
         $students = Student::create($validateData);
 
-        return redirect('/students');   
+        return redirect('/students');
 
     }
 
@@ -61,9 +132,11 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Student $student){
-        
-        return view('show' , compact('student'));
+    public function show(Student  $student){
+
+        return view('show', compact('student'));
+
+
     }
 
     /**
@@ -72,10 +145,20 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+
+
+    public function edit( $id){
+
+
+         $student = Student::find($id);
+        return view('edit', compact('student'));
+
+
+
+
     }
+
+
 
     /**
      * Update the specified resource in storage.
@@ -84,19 +167,57 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function save(array $inputs)
     {
-        //
+        return $this->student->create($inputs);
     }
+    public function update(Student $student, Request  $request)
+    {
 
-    /**
+
+        $request->validate([
+
+
+
+            'name'=>'required|max:255',
+            'email'=>'required|max:255',
+            'phone'=>'required',
+            'filieres'=>'required|max:255'
+
+
+        ]);
+
+            $input = $request->all();
+
+       if( $image = $request->file('image')){
+        $destinationPath = 'image/';
+        $profileImage = date('YmdHis') .".".$image->getClientOriginalExtension();
+        $image->move($destinationPath , $profileImage);
+        $input['image'] = "$profileImage";
+
+        }else{
+
+            unset($input['image']);
+
+        }
+
+        $student->update($input);
+
+        return redirect('/students');
+
+    }
+    /**'
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy( $id)
     {
-        //
+        $student = Student::find($id);
+        $student->delete(); // Easy right?
+
+        return redirect('/students');
+
     }
 }

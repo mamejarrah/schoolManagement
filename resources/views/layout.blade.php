@@ -102,29 +102,30 @@
 
         <div class="sidebar">
           <header>Main Menu</header>
-          <a href="{{ url('/students')}}" class="active">
+           <a href="{{ route('students.create') }}">
+            <i class="fas fa-link"></i>
+            <span>Ajout Students</span>
+         
+          <a href="{{ url('/students')}}" >
             <i class="fas fa-qrcode"></i>
             <span>Manage Students</span>
           </a>
-          <a href="#">
-            <i class="fas fa-link"></i>
-            <span>Shortcuts</span>
-          </a>
-          <a href="#">
+         
+          <a href="{{ route('filieres.create') }}">
             <i class="fas fa-stream"></i>
-            <span>Overview</span>
+            <span>Ajout Filieres</span>
           </a>
-          <a href="#">
+          <a href="{{  url('/filieres')}}" >
             <i class="fas fa-calendar"></i>
-            <span>Events</span>
+            <span>Manage Filieres</span>
           </a>
           <a href="#">
             <i class="far fa-question-circle"></i>
-            <span>About</span>
+            <span>Manage Teachers</span>
           </a>
           <a href="#">
             <i class="fas fa-sliders-h"></i>
-            <span>Services</span>
+            <span>Manage Libary</span>
           </a>
           <a href="#">
             <i class="far fa-envelope"></i>
@@ -153,7 +154,7 @@
             <p class="card-text">
 
             </p>
-            <a href="#" class="btn btn-primary">Read More !</a>
+        
           </div>
         </div>
       </div>
