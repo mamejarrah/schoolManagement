@@ -28,12 +28,12 @@ class StudentController extends Controller
 
     }
 
-    public function indexliste()
+    public function indexliste0()
     {
        $info_students = Student::where('filieres','=','informatique')->get();
        
        
-        return view('indexliste', compact('info_students'));
+        return view('indexliste0', compact('info_students'));
     }
 
     public function indexliste1()

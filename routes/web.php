@@ -24,7 +24,7 @@ Route::resource('students' , StudentController::class);
 
 Route::resource('filieres', FiliereController::class);
 
-Route::get('/students.info', [StudentController::class, 'indexliste'])->name('info');
+Route::get('/students.info', [StudentController::class, 'indexliste0'])->name('info');
 
 Route::get('/students.bureau', [StudentController::class, 'indexliste1'])->name('bureau');
 
